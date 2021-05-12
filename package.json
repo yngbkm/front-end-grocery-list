@@ -1,0 +1,22 @@
+{
+  "name": "front-end-grocery-list",
+  "version": "1.0.0",
+  "description": "",
+  "main": "README.md",
+  "scripts": {
+    "react-dev": "webpack -d --watch & live-server"
+  },
+  "author": "Josh Hertz",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-core": "^6.23.1",
+    "babel-loader": "^6.3.2",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.23.0",
+    "webpack": "^2.2.1"
+  },
+  "dependencies": {
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2"
+  }
+}
