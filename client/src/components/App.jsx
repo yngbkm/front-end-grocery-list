@@ -13,7 +13,8 @@ class App extends React.Component {
     };
 
     this.onDeleteClick = this.onDeleteClick.bind(this);
-    this.onInputSubmit = this.onInputSubmit.bind(this);
+    this.onInputChange = this.onInputChange.bind(this);
+    this.onFormSubmit = this.onFormSubmit.bind(this);
   }
 
   onDeleteClick(item) {
@@ -22,11 +23,20 @@ class App extends React.Component {
     });
   }
 
-  onInputSubmit(event) {
+  onInputChange(event) {
+    this.setState({
+      [event.target.name]: event.target.value
+    });
+  }
+
+  onFormSubmit(event) {
     event.preventDefault();
 
     this.setState({
-      [event.target.name]: event.target.value
+      // groceries: this.state.groceries.concat({name: this.state.item, quantity: this.state.quantity}),
+      groceries: [{name: this.state.item, quantity: this.state.quantity}, ...this.state.groceries],
+      item: '',
+      quantity: ''
     });
   }
 
@@ -35,12 +45,12 @@ class App extends React.Component {
       <div>
         <img src="grocery-bags.png" />
         <h1>Grocery List</h1>
-        <form onSubmit={this.onInputSubmit} >
+        <form onSubmit={this.onFormSubmit} >
           <label> Item
-            <input name="item" value={this.state.item} />
+            <input name="item" value={this.state.item} onChange={this.onInputChange} />
           </label>
           <label> Quantity
-            <input name="quantity" value={this.state.quantity} />
+            <input name="quantity" value={this.state.quantity} onChange={this.onInputChange} />
           </label>
           <button>Add Grocery</button>
         </form>
