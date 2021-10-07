@@ -5,9 +5,29 @@ import groceriesData from '../data/groceriesData.js';
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
 
+    this.state = {
+      groceries: groceriesData,
+      item: '',
+      quantity: ''
     };
+
+    this.onDeleteClick = this.onDeleteClick.bind(this);
+    this.onInputSubmit = this.onInputSubmit.bind(this);
+  }
+
+  onDeleteClick(item) {
+    this.setState({
+      groceries: this.state.groceries.filter(element => element !== item)
+    });
+  }
+
+  onInputSubmit(event) {
+    event.preventDefault();
+
+    this.setState({
+      [event.target.name]: event.target.value
+    });
   }
 
   render() {
@@ -15,16 +35,16 @@ class App extends React.Component {
       <div>
         <img src="grocery-bags.png" />
         <h1>Grocery List</h1>
-        <form>
+        <form onSubmit={this.onInputSubmit} >
           <label> Item
-            <input name="item" value="" />
+            <input name="item" value={this.state.item} />
           </label>
           <label> Quantity
-            <input name="quantity" value="" />
+            <input name="quantity" value={this.state.quantity} />
           </label>
           <button>Add Grocery</button>
-          <GroceryList groceries={groceriesData} />
         </form>
+        <GroceryList groceries={this.state.groceries} onDeleteClick={this.onDeleteClick} />
       </div>
     );
   }
