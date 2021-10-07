@@ -5,7 +5,9 @@ import groceriesData from '../data/groceriesData.js';
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+
+    };
   }
 
   render() {
@@ -21,7 +23,7 @@ class App extends React.Component {
             <input name="quantity" value="" />
           </label>
           <button>Add Grocery</button>
-          <GroceryList />
+          <GroceryList groceries={groceriesData} />
         </form>
       </div>
     );

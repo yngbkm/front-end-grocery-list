@@ -3,7 +3,9 @@ import GroceryListEntry from './GroceryListEntry.jsx';
 
 var GroceryList = (props) => (
   <ul className="groceries">
-    <GroceryListEntry />
+    {props.groceries.map((item, index) =>
+      <GroceryListEntry groceryItem={item} key={index} />
+    )}
   </ul>
 );
 
